@@ -3,12 +3,18 @@ from django.db import models
 # Create your models here.
 class Topic(models.Model):
     """The topics that will classify the articles"""
-    discription = models.CharField(max_length=150)
+    text = models.CharField(max_length=150)
     date_published = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        """Return sring representation for the model"""
+        return self.text
+
 
 class Entry(models.Model):
     """ represents entries for each Topic"""
-    topic = models.ForeignKey(Topic, on_delete=models.DO_NOTHING)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     text = models.TextField()
     data_added = models.DateTimeField(auto_now_add=True)
 
@@ -17,9 +23,8 @@ class Entry(models.Model):
 
     def __str__(self):
         """ returen a discreption of the model"""
-        return self.text[:50] + "..."
-
-
-def __str__(self):
-    """Return sring representation for the model"""
-    return self.discription
+        the_text = self.text
+        if len(the_text) > 50:
+            return self.text[:50] + "..."
+        else:
+            return self.text
