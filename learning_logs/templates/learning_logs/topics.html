@@ -4,10 +4,11 @@
   <p>Topics</p>
   <ul>
     {% for topic in topics %}
-      <li>{{ topic }}</li>
+      <li><a href="/topics/{{topic.id}}">{{ topic }}</a></li>
     {% empty %}
       <li>No topics have been added yet.</li>
     {% endfor %}
   </ul>
 
+  <a href="/new_topic/"> Add a new topic: </a>
 {% endblock content %}
