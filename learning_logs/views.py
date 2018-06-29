@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -38,6 +38,7 @@ def new_topic(request):
         form = TopicForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('learning_logs/topics.html'))
+            return redirect('topics')
+            #return HttpResponseRedirect(reverse('learning_logs/topics')) Note: But why it was not working
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
