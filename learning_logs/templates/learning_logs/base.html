@@ -1,5 +1,14 @@
 <p>
 Learning Logs</br>
+
+
+  {% if user.is_authenticated %}
+    Hello, {{ user.username }}.
+    <a href="users/logout/"> logout</a>
+  {% else %}
+    <a href="/users/register/"> Register </a><br>
+    <a href="/users/login/">Log in</a>
+  {% endif %}
 </p>
 
 {% block content %}

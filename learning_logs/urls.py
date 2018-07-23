@@ -15,5 +15,9 @@ urlpatterns = [
     path('topics/<int:topic_id>/', views.topic, name="topic"),
     # Add the urls for the forms for users other than admin to insert data_added
     path('new_topic/', views.new_topic, name='new_topic'),
+    # Page for adding a new entry for a spesfic topic
+    path('new_entry/<int:topic_id>', views.new_entry, name="new_entry"),
+    # edit each entry
+    path('edit_entry/<int:entry_id>', views.edit_entry, name="edit_entry"),
 
 ]

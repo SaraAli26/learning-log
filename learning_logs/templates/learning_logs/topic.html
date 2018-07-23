@@ -2,11 +2,18 @@
 
 {% block content %}
   <p>Topic: {{ topic }}</p>
+
+  <p>
+    <a href="/new_entry/{{topic.id}}"> Add new entry:</a>
+  </p>
   <p>Entries:</p>
   <ul>
     {% for entry in entries %}
       <li> <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-      <p>{{ entry.text|linebreaks }}</p> </li>
+      <p>{{ entry.text|linebreaks }}</p>
+      <p>
+        <a href="/edit_entry/{{entry.id}}"> Edit Entry</a>
+     </li>
     {% empty %}
       <li>There are no entries for this topic yet.</li>
     {% endfor %}
