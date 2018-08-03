@@ -1,14 +1,24 @@
 {% extends "learning_logs/base.html "%}
+{% load bootstrap3 %}
+
+{% block header  %}
+  <h2>Log in to your account.</h2>
+{% endblock header %}
 
 {% block content %}
-  {% if form.errors %}
+<!--  {% if form.errors %}
   <p>You usernase and password didn't match. Please try again</p>
   {% endif %}
+ this part will be edeleted because bootstrap3 cann detect errors
+automatically which is Wooooow-->
 
-  <form method="POST" action="">
+  <form method="POST" action="" class="form">
   {% csrf_token %}
-  {{ form.as_p }}
+  {% bootstrap_form form %}
 
-  <button name="submit">log in</button>
+  {% buttons %}
+  <button name="submit" class="btn btn-primary">log in</button>
+  {% endbuttons %}
+
   <input type="hidden" name="next" value="{{ next }}">
 {% endblock content %}

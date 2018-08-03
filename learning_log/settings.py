@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Third party apps
+    'bootstrap3',
     # The learning log models adding goes here
     'learning_logs',
     # This part contains all code related to users using website
@@ -126,3 +128,28 @@ LOGIN_REDIRECT_URL = '/'
 
 #setting to redirect users to login page if he tried to acces un authorized content
 LOGIN_URL = '/users/login/'
+
+# settings for django-bootstrap3
+BOOTSTRAP3 = {
+'include_jquery': True,
+}
+
+# Heroku setteings
+if os.getcwd() == '/app':
+    import dj_database_url
+    DATABASES = {
+    'default': dj_database_url.config(default='postgres://localhost')
+    }
+
+    # Hono the 'X-Forwarded-Proto' header for request.is_secure().
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    # Allow all host haders.
+    ALLOWED_HOSTS = ['*']
+
+    #Static asset configuration
+    BASE_DIR = os.path.dirname(os.path.abspath(_file_))
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    )
