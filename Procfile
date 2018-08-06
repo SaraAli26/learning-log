@@ -1,1 +1,1 @@
-web: gunicorn application:app
+web: gunicorn learning_log:app
